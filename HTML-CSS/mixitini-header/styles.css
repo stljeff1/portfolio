@@ -123,9 +123,6 @@ span.off-screen {
 		border-radius: 6px;
 
 	}
-	.navbar-default .navbar-nav > li > a {
-		font-weight: 1.2em;
-	}
 	.navbar-default .navbar-nav > li:hover {
 		background-color: rgba(0,0,0,.1);
 	}
