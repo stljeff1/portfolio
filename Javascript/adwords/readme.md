@@ -12,4 +12,4 @@ I was asked to figure out how track Adwords lead conversions for an enterprise c
 I essentially created two scripts. First, I created a script that parsed the URL. If the  script detected a gclid URL variable, which appears if a user arrives to the site via an Adwords campaign, the script saved that value as a cookie. With the gclid value saved as a cookie, I used jQuery to attach the gclid value to the lead submission, thus enabling the client to track lead conversions.
 
 
-[Return to Javascript samples](https://github.com/stljeff1/portfolio/Javascript/)
+[Return to Javascript samples](https://github.com/stljeff1/portfolio/tree/master/Javascript/)

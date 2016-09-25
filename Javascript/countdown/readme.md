@@ -12,4 +12,4 @@ The solution needed to use jQuery and AngularJS, since those tools were already 
 See my [blog post](http://blog.jeffwilkerson.net/countdown-directive/) and [codepen](http://codepen.io/stljeff1/pen/rrjBxg) for more on thuis example.
 
 
-[Return to Javascript samples](https://github.com/stljeff1/portfolio/Javascript/)
+[Return to Javascript samples](https://github.com/stljeff1/portfolio/tree/master/Javascript/)
