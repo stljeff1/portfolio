@@ -1,0 +1,184 @@
+
+/*
+Theme Name: WP-Forge-Colin-Trio
+Theme URI: http://wpstarter.themeawesome.com/
+Description: A child theme for WP-Forge
+Author: Thomas E. Vasquez
+Author URI: http://themeawesome.com/
+Template: wp-forge
+Version: 2.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: light, gray, white, one-column, two-columns, right-sidebar, custom-background, custom-header, custom-menu, editor-style, featured-images, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, translation-ready
+Text Domain: wpstarter
+*/
+
+/*@import url("../wp-forge/style.css");*/
+
+/* =Theme customization starts here
+----------------------------------------------- */
+
+
+/**
+  * RESET
+  *
+*/
+body {
+	position:relative;
+	z-index: 0;
+	background-color: #220000;
+	text-align: center;
+	padding: 0;
+	margin-bottom: 30px;
+	color: #000;
+}
+div, dl, dt, dd, ul, ol, li, pre, form, p, blockquote, th, td {		
+	font-size:1.1rem;
+}
+body, h1, h2, h3, h4, h5, h6, th, td, div, p, blockquote, ul, li {
+	font-family:'Montserrat', Verdana, Geneva, sans-serif
+}
+
+.show-listings-container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+a { color:#880000; text-decoration: underline; }
+a:visited { color: #880000; }
+a:hover { color: #d00; }
+a:active { color: #e12; }
+
+.radius {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+h2 small {
+	display: block;
+	margin: 10px 0 20px;
+}
+.chocolate-bg {
+	background-color: #220000;
+	color: #FFF;	
+}
+
+.red-bg {
+	background-color:#880000;
+	color: #FFF;
+}
+.button.red-bg:hover {
+	background-color: #aa0000
+}
+
+.butterscotch-bg {
+	background-color: #e73;
+	color: #220000;
+}
+
+.grass-bg {
+	background-color: #fa7;
+	color:#000;
+}
+
+.button {
+	-webkit-border-radius: 10;
+	-moz-border-radius: 10;
+	border-radius: 10px;
+	font-family: Arial;
+}
+.button.large {
+	text-decoration: none;
+}
+
+.button.black, .button.black:hover {
+	background: #383838;
+	background-image: -webkit-linear-gradient(top, #383838, #000000);
+	background-image: -moz-linear-gradient(top, #383838, #000000);
+	background-image: -ms-linear-gradient(top, #383838, #000000);
+	background-image: -o-linear-gradient(top, #383838, #000000);
+	background-image: linear-gradient(to bottom, #383838, #000000);
+
+	color: #ffffff;
+}
+
+.button.red {background: rgb(204,0,0); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(204,0,0,1) 0%, rgba(170,0,0,1) 62%, rgba(132,0,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(204,0,0,1)), color-stop(62%,rgba(170,0,0,1)), color-stop(100%,rgba(132,0,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(204,0,0,1) 0%,rgba(170,0,0,1) 62%,rgba(132,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(204,0,0,1) 0%,rgba(170,0,0,1) 62%,rgba(132,0,0,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(204,0,0,1) 0%,rgba(170,0,0,1) 62%,rgba(132,0,0,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(204,0,0,1) 0%,rgba(170,0,0,1) 62%,rgba(132,0,0,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc0000', endColorstr='#840000',GradientType=0 ); /* IE6-9 */
+	
+	color:#FFF;
+}
+	
+
+/**************** UPCOMING SHOWS ***************************/
+
+#Shows {
+	max-width: 720px;
+	margin: 0 auto;
+}
+
+.event-content {
+	width: 100%;
+}
+
+.event-content .event-label {
+	width: 24%;
+}
+
+.event-content .button {
+	font-weight:  bold;
+}
+
+.event-image {
+	max-width: 200px;
+}
+.oldie .event-image {
+	width: 200px;
+}
+
+x.no-touch .event-description div{
+	max-height: 75px;
+	overflow: scroll;
+}
+.page-upcoming-shows #next_show_widget, .single-sme_event #next_show_widget {display: none;}
+.page-upcoming-shows #next_show_widget.show {display: block; }
+
+.event-listing-template .event-pic {
+	max-width:200px;
+}
+
+.event-listing-template .event-date {
+	background-color: rgba(136, 0, 0, 0.6);
+	color: #fff;
+	line-height: 1
+}
+.event-listing-template .event-date .month {
+	font-size: 1rem;
+	text-transform: uppercase;
+}
+.event-listing-template .event-date .day {
+	font-size: 1.75rem;
+}
+
+.event-listing-template .event-info .address{
+	font-size: 1.3rem;
+}
+.event-listing-template .event-info .venue,.event-listing-template .event-info .notes {
+	font-size: 1em;
+}
+.event-listing-template .event-info .venue a {
+	white-space: nowrap;
+}
+
+.event-listing-template .event-link.button, .event-listing-template .event-link.button.small {
+	padding: 4px  6px;
+}
+
+.single-event .event-details{
+	padding-left: 20px;
+	text-align: left;
+}
