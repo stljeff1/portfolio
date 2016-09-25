@@ -1,0 +1,25 @@
+.countdown-container {
+  max-width: 550px;
+  margin: 0 auto;
+  font-size 18px;
+  text-align: center;
+}
+.counter-row { margin: 0 auto;}
+.col {
+	float: left;
+	width: 24.8%;
+	line-height: 1;
+}
+.digit-block {
+	margin-right 1.5rem
+}
+.digit-block:last-child { margin-right: .75rem; }
+.digit-block:first-child { margin-left: .75rem; }
+.number-block {
+	padding: 1rem 0;
+	border-bottom: 4px solid #c00;
+}
+.label-block {
+	padding: .5rem 0;
+	text-transform: uppercase;
+}
