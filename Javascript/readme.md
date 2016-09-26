@@ -6,6 +6,9 @@ Each directory here contains code snippets that demonstrate my knowledge and com
 #### jQuery
 [Adwords](https://github.com/stljeff1/portfolio/tree/master/Javascript/adwords) - An example showing how to attch specific URL variables as form fields
 
+[Google Maps Demo](https://github.com/stljeff1/portfolio/tree/master/Javascript/google-maps-demo) - an exercise utilizing class objects and json data
+
+
 #### AngularJS
 [Countdown](https://github.com/stljeff1/portfolio/tree/master/Javascript/countdown) - display a countdown with AngularJS
 

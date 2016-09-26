@@ -6,9 +6,9 @@
 ###Purpose
 
 I wanted to do a project involving object-oriented programming and web apis. I decided to build a map display that:
-	1. loaded a data object containing a group of image urls tied to latitude and longitude coordinates
-	2. plotted those images on map given a set of coordinates
-	3. iterate over the map markers to show each image
+- 1. loaded a data object containing a group of image urls tied to latitude and longitude coordinates
+- 2. plotted those images on map given a set of coordinates
+- 3. iterate over the map markers to show each image
 
 See [blog post](http://blog.jeffwilkerson.net/google-maps-demo/) for more technical details.
 
