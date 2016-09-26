@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Google maps demo</title>
+        <link rel='stylesheet' href='styles.css'/>
+    </head>
+    <body>
+        <div>
+        	
+            
+            <div id="map-container">
+        
+                <div class="row" id="map-controls"><div class="small-6 columns text-center"><a class="button black next-marker" href="#">Next</a></div><div class="small-6 columns text-center"><a class="button black previous-marker" href="#">Previous</a></div></div>
+                <div id="map-canvas" style=""></div>
+            </div>
+        </div>
+        <script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?sensor=true&ver=4.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pdx_trip_data_uri = {"path":"./js/trip-to-pdx.json"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='./js/gmaps_init.js'></script>
+    </body>
+</html>
