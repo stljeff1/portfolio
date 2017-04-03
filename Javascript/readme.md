@@ -1,17 +1,20 @@
-#### Javascript
+## Javascript
 ***
 
 Each directory here contains code snippets that demonstrate my knowledge and command of Javascript.
 
-#### jQuery
+### jQuery
 [Adwords](https://github.com/stljeff1/portfolio/tree/master/Javascript/adwords) - An example showing how to attch specific URL variables as form fields
 
 [Google Maps Demo](https://github.com/stljeff1/portfolio/tree/master/Javascript/google-maps-demo) - an exercise utilizing class objects and json data
 
 
-#### AngularJS
+### AngularJS
 [Countdown](https://github.com/stljeff1/portfolio/tree/master/Javascript/countdown) - display a countdown with AngularJS
+[App Idle](https://github.com/stljeff1/portfolio/tree/master/Javascript/countdown) - Trigger an event when User goes idle
 
+### KnockoutJS
+[Edit Inline Component](https://github.com/stljeff1/portfolio/tree/master/Javascript/edit-inline-knockout-component) - Using KnockoutJS to build custom components and bindings
 
 Included with each snippet is a readme file that explains the purpose of each snippet.
 
