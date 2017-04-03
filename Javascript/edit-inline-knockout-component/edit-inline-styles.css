@@ -1,0 +1,10 @@
+
+		.inline-edit-widget .inline-edit-form-field {
+			display: none;
+
+		}
+		.inline-edit-widget .editing a { display: none; }
+		.inline-edit-widget .editing .inline-edit-form-field {
+			display: block;
+
+		}

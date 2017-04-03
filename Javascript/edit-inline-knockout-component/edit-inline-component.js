@@ -75,7 +75,7 @@ ko.components.register('edit-inline', {
 			'<div class="form-group">' +
 				'<label class="col-sm-3 control-label" data-bind="text: labelText + \':\'"></label>' +
 				'<div class="col-sm-9" data-bind="css: {\'editing\': isEditing}">' +
-					'<span data-bind="text: value()"></span>' +
+					'<a href="#" data-bind="text: value()"></a>' +
 					'<div class="inline-edit-form-field">' + 
 						'<input type="text" class="form-control" data-bind="value: edittedValue, valueUpdate: \'keyup\', hasFocus: isEditing, event: {blur: finishEdit }, executeOnEnter: save"/>' +
 						'<small>Press \'Enter\' to save value</small>' +
