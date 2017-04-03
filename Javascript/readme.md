@@ -11,7 +11,8 @@ Each directory here contains code snippets that demonstrate my knowledge and com
 
 ### AngularJS
 [Countdown](https://github.com/stljeff1/portfolio/tree/master/Javascript/countdown) - display a countdown with AngularJS
-[App Idle](https://github.com/stljeff1/portfolio/tree/master/Javascript/countdown) - Trigger an event when User goes idle
+
+[App Idle](https://github.com/stljeff1/portfolio/tree/master/Javascript/app-idle) - Trigger an event when User goes idle
 
 ### KnockoutJS
 [Edit Inline Component](https://github.com/stljeff1/portfolio/tree/master/Javascript/edit-inline-knockout-component) - Using KnockoutJS to build custom components and bindings
