@@ -5,7 +5,7 @@ I've spent half my life learning anything I can about web development. I have fo
 
 This repository contains snippets from past projects that illustrate my understanding of important web technologies.
 
-## HTML & CSS
+## [HTML & CSS](https://github.com/stljeff1/portfolio/tree/master/Javascript)
 
 [Mixitini Header](https://github.com/stljeff1/portfolio/tree/master/HTML-CSS/mixitini-header) - Crazy but cool layout
 
@@ -14,7 +14,7 @@ This repository contains snippets from past projects that illustrate my understa
 [see-a-show](https://github.com/stljeff1/portfolio/tree/master/HTML-CSS/see-a-show) - Playing with Rich Data Snippets
 
 
-## JavaScript
+## [JavaScript](https://github.com/stljeff1/portfolio/tree/master/Javascript)
 
 
 #### jQuery
@@ -33,5 +33,6 @@ This repository contains snippets from past projects that illustrate my understa
 
 ## Wordpress (PHP/MySQL)
 
-## MEAN (Node.js, Express, AngularJS, MongoDB)
+## Other
+[Yoga App](https://github.com/stljeff1/Yoga-App) - Playing with AngularJS to create a single-page-app
 
