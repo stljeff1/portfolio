@@ -1,9 +1,9 @@
 #### Countdown using AngularJS
 ***
 
-###Date: January, 2016
+### Date: January, 2016
 
-###Purpose
+### Purpose
 
 The client wanted to display a countdown on site, and needed the counter to stop at 0 when time ended (ie, not show a negative time).
 

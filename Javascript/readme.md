@@ -15,6 +15,8 @@ Each directory here contains code snippets that demonstrate my knowledge and com
 [App Idle](https://github.com/stljeff1/portfolio/tree/master/Javascript/app-idle) - Trigger an event when User goes idle
 
 ### KnockoutJS
+[Add to List Component](https://github.com/stljeff1/portfolio/tree/master/Javascript/add-to-list-knockout-component) - fetcha list of data items, populate a select box, then allow user to add items from list to view model.
+
 [Edit Inline Component](https://github.com/stljeff1/portfolio/tree/master/Javascript/edit-inline-knockout-component) - Using KnockoutJS to build custom components and bindings
 
 Included with each snippet is a readme file that explains the purpose of each snippet.
