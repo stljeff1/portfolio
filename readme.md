@@ -33,6 +33,9 @@ This repository contains snippets from past projects that illustrate my understa
 
 [Edit Inline Component](https://github.com/stljeff1/portfolio/tree/master/Javascript/edit-inline-knockout-component) - Using KnockoutJS to build custom components and bindings
 
+### Kendo UI
+[Unbirthday Calculator](https://github.com/stljeff1/portfolio/tree/master/Javascript/unbirthdays) - Quick exercise demonstrating Kendo UI Datepicker and Validator.
+
 ## Wordpress (PHP/MySQL)
 
 ## Other

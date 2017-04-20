@@ -21,5 +21,7 @@ Each directory here contains code snippets that demonstrate my knowledge and com
 
 Included with each snippet is a readme file that explains the purpose of each snippet.
 
+### Kendo UI
+[Unbirthday Calculator](https://github.com/stljeff1/portfolio/tree/master/Javascript/unbirthdays) - Quick exercise demonstrating Kendo UI Datepicker and Validator.
 
 [Return to the Portfolio home page](https://github.com/stljeff1/tree/master/portfolio/)
