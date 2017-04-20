@@ -1,9 +1,9 @@
 ## Countdown using AngularJS
 ***
 
-####Date: November, 2016
+#### Date: November, 2016
 
-####Purpose
+#### Purpose
 
 A project I gave myself to explore how to create an object that will tell me when the user goes idle. Using AngularJS.
 

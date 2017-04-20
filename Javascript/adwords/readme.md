@@ -1,9 +1,9 @@
 #### Adwords Conversion Example
 ***
 
-###Date: May, 2014
+### Date: May, 2014
 
-###Purpose
+### Purpose
 
 I was asked to figure out how track Adwords lead conversions for an enterprise customer, which was something out of the ordinary given the unique Content Management System (CMS) in use. All forms were created by the system, so the only way to solve this problem was to implement a client-side solution (jQuery).
 

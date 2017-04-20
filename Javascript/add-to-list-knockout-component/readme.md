@@ -12,7 +12,7 @@ This knockout component will populate a select box with items from a remote data
 <add-to-list params="list: $root.ListOfItems, optionsText: 'name', submit: addItem, disable: (selectedUser().List().length >= 5), limitMsg: 'Limit reached.'">
 </add-to-list>
 
-``x`
+```
 
 See my [blog post](http://blog.jeffwilkerson.net/adding-items-to-list-knockoutjs/) and [codepen](http://codepen.io/stljeff1/pen/dvBvbj) for more on this example.
 
