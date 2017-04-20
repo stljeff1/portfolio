@@ -18,8 +18,8 @@
 				//calculate days since birthdate by converting the difference into days.
 				var daysSince = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-				//calculate unbirthdays
-				var unBirthdays = daysSince - age;
+				//calculate unbirthdays, then subtract today.
+				var unBirthdays = daysSince - age - 1;
 
 				return unBirthdays;
 			};
