@@ -109,6 +109,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js"></script>
+	<script src='./user-data.js'></script>
 	<script type="text/javascript" src="./Sortable.js"></script>
 	<script type="text/javascript" src="./knockout-sortable.js"></script>
 
@@ -122,73 +123,28 @@
 
 		(function($, ko) {
 
-			var myUsers = [{
-				id: 131,
-				name: 'Steve',
-				email: 'steve@corporate.com',
-				img: 'http://gokubi.com/wp-content/uploads/2013/10/Steve-Andersen-Headshot-square1.jpeg',
-				favTeams: [
-					{"ID": "139", "name": "Tampa Bay Rays" },
-					{"ID": "133", "name": "Oakland Athletics" },
-					{"ID": "109", "name": "Arizona Diamondbacks"}
-				]
-			}, {
-				id: 244,
-				name: 'Kim',
-				email: 'kim@corporate.com',
-				img: 'http://notebookingfairy.com/wp-content/uploads/2012/10/jimmie-headshot-square-9-2016-300x300.jpg',
-				favTeams: [
-					{"ID": "111", "name": "Boston Red Sox" }
-				]
-			}, {
-				id: 331,
-				name: 'Manoj',
-				email: 'manoj@corporate.com',
-				img: 'http://foundershield.com/wp-content/uploads/2017/03/Manoj-Headshot-square-200x200.jpg',
-				favTeams: [
-					{"ID": "120", "name": "Washington Nationals" },
-					{"ID": "110", "name": "Baltimore Orioles" },
-					{"ID": "136", "name": "Seattle Mariners"}
-				]
-			}, {
-				id: 421,
-				name: 'Brian',
-				email: 'dan@corporate.com',
-				img: 'https://aikenareaprogressive.files.wordpress.com/2016/12/steven-long-headshot-square-250x250.jpg?w=500',
-				favTeams: [
-					{"ID": "138", "name": "St. Louis Cardinals" }
-				]
-			}];
-
-
-			ko.dirtyFlag = function(root, isInitiallyDirty) {
-			    var result = function() {},
-			        _initialState = ko.observable(ko.toJSON(root)),
-			        _isInitiallyDirty = ko.observable((isInitiallyDirty) ? true : false);
-
-			    result.isDirty = ko.computed(function() {
-			    		var isDirty = _isInitiallyDirty();
-			    		if(isDirty) 
-			    			return true;
-			    		else {
-			    			console.log('is this dirty?', _initialState(), ko.toJSON(root), root, (_initialState() !== ko.toJSON(root)));
-			    			_initialState() !== ko.toJSON(root);
-			    		}
-			    });
-
-			    result.reset = function() {
-			        _initialState(ko.toJSON(root));
-			        _isInitiallyDirty(false);
-			    };
-
-			    return result;
-			};
-
+			/**
+			  * Represents Team
+			  * @constructor 
+			  * @param {number} TeamID - ID of Team
+			  * @param {number} TeamName - Name of Team
+			  */
 			function Team(teamID, teamName) {
 				this.ID = teamID;
 				this.name = teamName;
 			}
 
+
+			/**
+			  * Represents User
+			  * @constructor 
+			  * @param {Object} userObj - Oject from server representing user
+			  * @param {number} userObj.id - ID of User
+			  * @param {string} userObj.name - name of User
+			  * @param {email} userObj.email - Email of User
+			  * @param {string} userObj.image - image of User
+			  * @param {object[]} userObj.favTeams - List of Favorite teams of users
+			  */
 			function User(userObj) {
 				var self = this;
 
@@ -201,7 +157,9 @@
 				self.img = userObj.img;
 
 
-    				//self.dirtyFlag = new ko.dirtyFlag(self);
+    				/** @function update
+    				  * @param {object} - new user object to overwrite existing values
+    				  */
     				self.update = function(newValue) {
     					self.id(newValue.id)
     					self.name(newValue.name);
@@ -210,58 +168,100 @@
     				}
 			}
 
+
+			/**
+			  * Represents the user being editted
+			  * @constructor 
+			  * @param {Object} user - the user to edit
+			  */
 			function EditUser(user) {
 
 				var self = this;
 				var origValue = null;
+
+				/** Private function that checks to see if user object has changed.
+				  * @function onDataChange
+				  * @param {string} - current user object converted into JSON string
+				  */
 				var onDataChange = function(dirtyUser) {
 					var cleanUser = ko.toJSON(self.origUser);
 					self.isClean((dirtyUser === cleanUser));
 					console.log('user change', dirtyUser, cleanUser, self.isClean());
 				}
 
+
+				/* Current user being editted - initialized with empty user */
 				self.user = ko.observable(new User({}));
+
+				/* variable to hold original user */
 				self.origUser = ko.observable(user);
 
+				/* Flag to determine if user data has changed from original */
 				self.isClean = ko.observable(-1);
 
 
+    				/** @function addTeam
+    				  * @param {object} - Team to add to user's favorite team list
+    				  */	
 				self.addTeam = function(team) {
 					console.log('adding team: ', team);
 					self.user().favTeams.push(team);
 				};
 
+
+    				/** @function removeTeam
+    				  * @param {object} - Team to remove from user's favorite team list
+    				  */	
 				self.removeTeam = function(obj) {
 					//var index = self.favTeams.indexOf(obj);
 					self.user().favTeams.remove(obj);
 				};
 
 
+    				/** @function initUser - inits EditUser window
+    				  * @param {object} - User object to display in window
+    				  */	
 				self.initUser = function(userObj) {
+					
+					// save original value of user
 					var origValue = ko.toJS(userObj);
 					self.origUser(userObj);
 
+					// create new user from original value
 					self.user(new User(origValue));
-					console.log('init user',userObj, self.user(), self.origUser());
-					
+
+					// create computed value from user;
+					// subscribe to any changes
 					self.userData = ko.computed(function() {
 						return ko.toJSON(self.user);
 					}).subscribe(onDataChange);
+
+					// set isClean to true
 					self.isClean(true);
 				};
 
-				self.saveUser = function() {
-					console.log('saving????????', self.origUser());
+
+    				/** @function saveUser - sends changes to user so that it can be saved
+    				  */	
+				/*self.saveUser = function() {
+					
 					var newValue = ko.toJS(self.user);
 
 					var json = ko.toJSON(newValue, null, 4);
 
+					// overwrite the original user with new values
 					self.origUser().update(newValue);
 
-					console.log('saving????????', self.origUser(), json);
+
+					// if this was for real, i'd make an ajax call to save user here.
+					console.log('saving!', self.origUser(), json);
 
 					$('.json-output').show().find('pre').html(syntaxHighlight(json));
-				};
+				};*/
+
+
+    				/** @function resetUser - undo all changes to user. Restore user to original object.
+    				  */	
 
 				self.resetUser = function() {
 					var origValue = ko.toJS(self.origUser);
@@ -270,29 +270,38 @@
 					//self.isClean(false);
 				}
 
-				self.echoUser = function() {
-
-
-				}
 
 			}
+
+
+			/**
+			  * Represents the ViewModel of App
+			  * @constructor 
+			  */
 			function ManageUsers() {
 				var self = this;
 
+				// List of users of app
 				self.users = ko.observableArray([]);
 
+				//master list of teams
 				self.mlbTeams = ko.observableArray([]);
 
+				// the current user being editted
 				self.selectedUser = ko.observable();
 
+				//The "Ediotor" window
 				self.userEditor = new EditUser();
 
+				// array of envents in App
 				self.log = ko.observableArray([]);
 
 
 
+    				/** @function filteredTeams
+    				  * @return array of teams minus the teams associated with selectedUser
+    				  */	
 				self.filteredTeams = function() {
-					console.log(self.selectedUser(), self.mlbTeams());
 					if(!self.selectedUser())
 						return self.mlbTeams();
 					else {
@@ -317,16 +326,14 @@
 
 				};
 
+
+    				/** @function loadTeams - loads team data from remote source.
+    				  */	
 				self.loadTeams = function(callback) {
 					$.ajax({
 						//url: 'http://mlb.com/lookup/json/named.team_all.bam',
 						url: 'http://mlb.com/lookup/json/named.team_all.bam?sport_code=%27mlb%27&active_sw=%27Y%27&all_star_sw=%27N%27',
-						/*data: {
-							'sport_code': 'mlb',
-							'active_sw': 'Y',
-							'all_star_sw': 'N'
-
-						}*/
+						
 						success: function(data) {
 							console.log(data);
 							var teams = data.team_all.queryResults.row;
@@ -343,14 +350,27 @@
 					});
 				};
 
+
+    				/** @function saveUser - sends changes to user so that it can be saved
+    				  */	
 				self.saveUser = function() {
 					var user = self.userEditor.user;
+
+					// if this was for real, i'd make an ajax call to save user here.
+					// For now, i'll just log the action and show the data packet sent to server
+
 					self.log.push({action: 'Save User', message: syntaxHighlight(ko.toJSON(user))});
+
+					// reinitialize user editor with new user
 					self.userEditor.initUser(user());
 					
 				}
 
+
+    				/** @function loadUsers - Creates new user objecta, add them to view model.
+    				  */	
 				self.loadUsers = function(userList) {
+
 
 					userList.forEach(function(user) {
 						self.users.push(new User(user));
@@ -358,11 +378,17 @@
 
 				};
 
+
+    				/** @function initDisplay - called when App is ready. Initiates editor window with first user
+    				  */	
 				self.initDisplay = function() {
-					console.log('initDisplay', self.mlbTeams());
+
 					self.userEditor.initUser(self.users()[0]);
 				};
 
+
+    				/** @function toggleUser - event handler triggered when a user is selected.
+    				  */	
 				self.toggleUser = function() {
 					console.log('toggleUser', arguments, this);
 					self.userEditor.initUser(this);
@@ -372,6 +398,11 @@
 			$(function() {
 
 				var vm = new ManageUsers();
+
+				/* Ideally, would make AJAX call to fetch user list here.
+				   Since this is just a test in local dev environment,
+				   I'll just put user data in a JS object.
+				*/
 
 				vm.loadUsers(myUsers);
 
