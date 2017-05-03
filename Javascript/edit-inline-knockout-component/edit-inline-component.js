@@ -30,28 +30,26 @@ ko.components.register('edit-inline', {
 		this.edittedValue = ko.observable(null);
 
 		this.msg = ko.observable('');
-		console.log(this.value, this.edittedValue, this.edittedValue(), origVal)
-
 		this.startEdit = function() {
 			this.edittedValue(origVal);
 			console.log('begin', this.value(), this.edittedValue());
 			this.isEditing(true);
 			this.msg('');
 		}.bind(this);
+		
 		this.finishEdit = function() {
 			this.isEditing(false);
 			this.edittedValue(null);
 		}.bind(this);
+		
 		this.save = function() {
 			origVal = this.edittedValue();
 			this.value(origVal);
-			console.log('save', this.value(), origVal);
 			this.msg('Saved!');
 			this.finishEdit();
 		}.bind(this);
 
 		this.onKeyPress = function(vm, e) {
-			console.log(this.edittedValue());
 			var keyCode = (e.which ? e.which : e.keyCode);
 			if (keyCode === 13) {
 				this.save();

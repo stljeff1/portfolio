@@ -6,86 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>Admin Screen w/ Knockout</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-		.user-list ul {
-			list-style: none;
-		}
-		.user-list li {
-			margin: 0 0 10px;
-			background: #eeeeee; /* Old browsers */
-			background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* FF3.6-15 */
-			background: -webkit-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* Chrome10-25,Safari5.1-6 */
-			background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-			border: 2px solid #eee;
-			padding: 10px;
-			border-radius: 20px
-		}
-		.user-list li:hover {
-			background: #f6f6f6;
-			border-color: #999;
-
-		}
-		.media img {
-			max-width: 100px;			
-		}
-
-		.user-details .row {
-
-			margin-bottom: 15px;
-
-		}
-
-		.user-details .form-group label, .user-details .form-group span, .user-details .form-group input {
-			line-height: 2;
-			vertical-align: middle;;
-		}
-
-		.user-details .form-group label { padding-top: 0; }
-
-		.draggable-item {
-			cursor: hand;
-			border: 1px solid #222;
-			box-shadow: inset 0 -2px 0 rgba(0,0,0,.5)
-		}
-
-		.draggable-item:hover {
-			border-color: #2e6da4;
-			background-color: #eaeaea;
-		}
-
-		.draggable-item i:hover {
-			color: #f00;
-		}
-		.sortable-chosen, .draggable-item.sortable-chosen {
-			color: #337ab7;
-			box-shadow: 0;
-			border-color: #204d74;
-		}
-
-
-		.inline-edit-widget .inline-edit-form-field {
-			display: none;
-
-		}
-		.inline-edit-widget .editing span { display: none; }
-		.inline-edit-widget .editing .inline-edit-form-field {
-			display: block;
-
-		}
-
-		pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; 
-			white-space: pre-wrap;
-			word-break: normal;
-		}
-		.string { color: green; }
-		.number { color: darkorange; }
-		.boolean { color: blue; }
-		.null { color: magenta; }
-		.key { color: red; }
-
-
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="./admin-styles.css"/>
 </head>
 <body>
 
@@ -95,9 +16,9 @@
 				<h2>Manage Users</h2>
 				<p>Use this page to change details of each user.</p>
 				<div class="user-list">
-					<ul data-bind="foreach: users" class="user-list">
-						<li>
-							<div class="media">
+					<ul data-bind="foreach: users" class="user-list list-group">
+						<li class="list-group-item" data-bind="css: {'active': id() == $parent.userEditor.user().id()}">
+							<div class="media" data-bind="click: $parent.toggleUser">
 								<div class="media-left">
 									<img data-bind="attr: {'src': img}" src="http://www.wallstreetotc.com/wp-content/uploads/2014/10/facebook-anonymous-app.jpg"/>
 								</div>
@@ -123,7 +44,11 @@
 						<div class=" form-group"> 
 							<label class="control-label col-sm-3"> Favorite Teams:</label>
 							<div class="col-sm-9">
+								<div class="" data-bind="visible: user().favTeams().length === 0">
+									<em>No favorite teams.</em>
+								</div>
 								<div class="sortable list-group" data-bind="sortable: {foreach: user().favTeams, as: 'team'} ">
+
 									
 								    	<div class="draggable-item list-group-item">
 								    	<span class="pull-right" data-bind="click: $parent.removeTeam"><i class="glyphicon glyphicon-remove"></i></span>
@@ -149,16 +74,33 @@
 
 
 						<hr/>
-						<a href="#" class="btn btn-primary" data-bind="css: { disabled: isDirty() !== true  }, click: saveUser">Save Changes</a>
-						<a href="#" class="btn btn-warning" data-bind="css: { disabled: isDirty() !== true  }, click: resetUser">Cancel changes</a>
+						<a href="#" class="btn btn-primary" data-bind="css: { disabled: (isClean() == -1 || isClean() !== false) }, click: $root.saveUser">Save Changes</a>
+						<a href="#" class="btn btn-warning" data-bind="css: { disabled: (isClean() == -1 || isClean() !== false)  }, click: resetUser">Cancel changes</a>
 						<br/>
 						<div class="json-output" style="display: none;">
 							<h5>JSON to Server</h5>
 							<pre></pre>
 						</div>
-
 					</form>
 				</div>
+				<section class="log-table">
+					<h4>Server Acticvity Log</h4>
+										<table class="table table-striped" data-bind="visible: log().length">
+							<tr>
+								<th width="35%">Action</th>
+								<th>Message</th>
+							</tr>
+							<tbody data-bind="foreach: log">
+								<tr>
+									<td data-bind="text: action"></td>
+									<td data-bind="html: message"></td>
+								</tr>
+							</tbody>
+
+
+						</table>
+				</section>
+
 
 			</div>
 		</div>
@@ -169,6 +111,11 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js"></script>
 	<script type="text/javascript" src="./Sortable.js"></script>
 	<script type="text/javascript" src="./knockout-sortable.js"></script>
+
+	<script type="text/javascript" src="../edit-inline-knockout-component/edit-inline-component.js"></script>
+	<script type="text/javascript" src="../add-to-list-knockout-component/add-to-list-component.js"></script>
+
+
 	<script type="text/javascript">
 		
 
@@ -176,32 +123,42 @@
 		(function($, ko) {
 
 			var myUsers = [{
-				name: 'Peter',
-				email: 'peter@familyguy.com',
-				img: 'https://assets.facerepo.com/app/image/preview/peter-g-14b46b5f708.png?v=14b46b5f5a8',
-				favTeams: []
+				id: 131,
+				name: 'Steve',
+				email: 'steve@corporate.com',
+				img: 'http://gokubi.com/wp-content/uploads/2013/10/Steve-Andersen-Headshot-square1.jpeg',
+				favTeams: [
+					{"ID": "139", "name": "Tampa Bay Rays" },
+					{"ID": "133", "name": "Oakland Athletics" },
+					{"ID": "109", "name": "Arizona Diamondbacks"}
+				]
 			}, {
-				name: 'Lois',
-				email: 'lois@familyguy.com',
-				img: 'http://vignette3.wikia.nocookie.net/family-guy-the-quest-for-stuff/images/c/cf/Facespace_portrait_loisgriffin_default%404x.png/revision/latest?cb=20140420142401',
-				favTeams: []
+				id: 244,
+				name: 'Kim',
+				email: 'kim@corporate.com',
+				img: 'http://notebookingfairy.com/wp-content/uploads/2012/10/jimmie-headshot-square-9-2016-300x300.jpg',
+				favTeams: [
+					{"ID": "111", "name": "Boston Red Sox" }
+				]
 			}, {
-				name: 'Meg',
-				email: 'meg@familyguy.com',
-				img: 'http://www.cartoonspot.net/family-guy/pictures/meg-griffin-1.jpg',
-				favTeams: []
+				id: 331,
+				name: 'Manoj',
+				email: 'manoj@corporate.com',
+				img: 'http://foundershield.com/wp-content/uploads/2017/03/Manoj-Headshot-square-200x200.jpg',
+				favTeams: [
+					{"ID": "120", "name": "Washington Nationals" },
+					{"ID": "110", "name": "Baltimore Orioles" },
+					{"ID": "136", "name": "Seattle Mariners"}
+				]
 			}, {
+				id: 421,
 				name: 'Brian',
-				email: 'brian@familyguy.com',
-				img: 'http://i.dailymail.co.uk/i/pix/2013/11/25/article-0-19A0043D00000578-50_634x638.jpg',
-				favTeams: []
+				email: 'dan@corporate.com',
+				img: 'https://aikenareaprogressive.files.wordpress.com/2016/12/steven-long-headshot-square-250x250.jpg?w=500',
+				favTeams: [
+					{"ID": "138", "name": "St. Louis Cardinals" }
+				]
 			}];
-
-			ko.bindingHandlers.addToList = {
-				init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-
-				}
-			};
 
 
 			ko.dirtyFlag = function(root, isInitiallyDirty) {
@@ -227,190 +184,6 @@
 			    return result;
 			};
 
-
-			ko.bindingHandlers.executeOnEnter = {
-				init: function (element, valueAccessor, allBindings, viewModel) {
-					var callback = valueAccessor();
-					$(element).keypress(function (event) {
-						var keyCode = (event.which ? event.which : event.keyCode);
-						if (keyCode === 13) {
-							callback.call(viewModel);
-							return false;
-						}
-						return true;
-					});
-				}
-			};
-
-
-			ko.components.register('edit-inline', {
-				viewModel: function(params) {
-
-					var widget = this;
-
-					var origVal = params.value();
-
-					this.value = params.value;
-					this.labelText = params.labelText
-
-					this.isEditing = ko.observable(false);
-
-					this.edittedValue = ko.observable(null);
-
-					this.msg = ko.observable('');
-					console.log(this.value, this.edittedValue, this.edittedValue(), origVal)
-
-					this.startEdit = function() {
-						this.edittedValue(origVal);
-						console.log('begin', this.value(), this.edittedValue());
-						this.isEditing(true);
-						this.msg('');
-					}.bind(this);
-					this.finishEdit = function() {
-						this.isEditing(false);
-						this.edittedValue(null);
-					}.bind(this);
-					this.save = function() {
-						origVal = this.edittedValue();
-						this.value(origVal);
-						console.log('save', this.value(), origVal);
-						this.msg('Saved!');
-						this.finishEdit();
-					}.bind(this);
-
-					this.onKeyPress = function(vm, e) {
-						console.log(this.edittedValue());
-						var keyCode = (e.which ? e.which : e.keyCode);
-						if (keyCode === 13) {
-							this.save();
-							return false;
-						}
-						return true;
-
-					}.bind(this);
-
-					this.toggle = function() {
-						if(!this.isEditing())
-							this.startEdit();
-						//else
-							//this.finishEdit();
-					}.bind(this);
-
-
-				},
-				template: 
-					'<div class="inline-edit-widget" data-bind="click: toggle">' +
-						'<div class="form-group">' +
-							'<label class="col-sm-3 control-label" data-bind="text: labelText + \':\'"></label>' +
-							'<div class="col-sm-9" data-bind="css: {\'editing\': isEditing}">' +
-								'<span data-bind="text: value()"></span>' +
-								'<div class="inline-edit-form-field">' + 
-									'<input type="text" class="form-control" data-bind="value: edittedValue, valueUpdate: \'keyup\', hasFocus: isEditing, event: {blur: finishEdit }, executeOnEnter: save"/>' +
-									'<small>Press \'Enter\' to save value</small>' +
-								'</div>' +
-							'</div>' + 
-						'</div></div>'
-			});
-
-		
-			ko.components.register('add-to-list', {
-				viewModel: function(params) {
-
-					this.selectedValue = ko.observable(null);
-
-					this.list = params.list;
-
-					this.limitMsg = params.limitMsg || "List limit reached";
-
-					this.optionsText = params.optionsText || "Text";
-					this.optionsValue = params.optionsValue || "ID";
-					this.newValue = ko.observable(null);
-
-					this.disable = params.disable;
-
-					this.submitFn = params.submit || function() {console.warn('Add To List Widget: No submit function provided;'); };
-					console.log('disable', this.disable());
-					this.addToList = function() { 
-						var value = this.selectedValue();
-
-						this.selectedValue(null);
-
-						this.submitFn(value);
-
-					}.bind(this);
-				},
-				template: 
-					'<div class="add-to-list-widget"><div class="row"><div class="col-sm-10">' +
-					'<select class="form-control" data-bind="options: list(), value: selectedValue, optionsText: optionsText,  optionsCaption: \'Add to list...\', enable: !disable()"></select>' +
-					'</div><div class="col-sm-2"><button class="btn" data-bind="enable: (selectedValue() && !disable()), click: addToList">+</button>' +
-					'</div></div>' +
-					'<div data-bind="visible: disable()"><strong style="color: red; text-align: center" data-bind="text: limitMsg"></strong>' +
-					'</div>'
-			});
-
-			ko.bindingHandlers.sortableList = {
-				init: function (element, valueAccessor, allBindingsAccessor, viewModel, context) {
-					var options = valueAccessor();
-					var list = options.data;
-
-					ko.bindingHandlers.foreach.init(element, valueAccessor, allBindingsAccessor, viewModel, context);
-					console.log(arguments);
-					$(element).sortable({
-						update: function (event, ui) {
-							var dataObj = ui.item.data('dataObj');
-		
-							var newIndex = ko.utils.arrayIndexOf(ui.item.parent().children(), ui.item[0]);
-			
-								console.log(newIndex, dataObj);//, dataObj, uiParent, origParent)
-							if (dataObj) {
-								
-									list.remove(dataObj);
-									list.splice(newIndex, 0, dataObj);
-									ui.item.remove();
-								
-								/*if (origParent != parentType) {
-									//change access
-									dataObj.toggleAccess();
-
-								}
-								else {
-									//console.log('same list');
-									//dataObj.Order
-								}
-									context.resortColumns();
-								
-									context.dirtyForm();
-
-								*/
-							}
-							else {
-								//console.log('nevermind');
-							}
-							//context.sortColumns();
-							
-
-						},
-						placeholder: 'ui-state-highlight',
-						helper: 'clone'
-					});
-				},
-				update: function (element, valueAccessor, allBindingsAccessor, viewModel, context) {
-					console.log('wtf', element, valueAccessor());
-					ko.bindingHandlers.foreach.update(element, valueAccessor, allBindingsAccessor, viewModel, context);
-				}
-			};
-
-			//attach meta-data
-			ko.bindingHandlers.sortableItem = {
-				init: function (element, valueAccessor) {
-
-					var dataObj = valueAccessor();
-					console.log('sortableItem', dataObj);
-					$(element).data({ 'dataObj': dataObj });
-				}
-			};
-
-
 			function Team(teamID, teamName) {
 				this.ID = teamID;
 				this.name = teamName;
@@ -419,18 +192,21 @@
 			function User(userObj) {
 				var self = this;
 
+				self.id = ko.observable(userObj.id || '');
+
 				self.name = ko.observable(userObj.name || '');
 				self.email = ko.observable(userObj.email || '');
-				self.favTeams = ko.observableArray([]);
+				self.favTeams = ko.observableArray(userObj.favTeams || []);
 
 				self.img = userObj.img;
 
 
-    				self.dirtyFlag = new ko.dirtyFlag(self);
+    				//self.dirtyFlag = new ko.dirtyFlag(self);
     				self.update = function(newValue) {
+    					self.id(newValue.id)
     					self.name(newValue.name);
     					self.email(newValue.email);
-    					//self.
+    					self.favTeams(newValue.favTeams);
     				}
 			}
 
@@ -438,15 +214,16 @@
 
 				var self = this;
 				var origValue = null;
-				var onDataChange = function() {
-					console.log('user change', arguments, this);
-					self.isDirty(true);
+				var onDataChange = function(dirtyUser) {
+					var cleanUser = ko.toJSON(self.origUser);
+					self.isClean((dirtyUser === cleanUser));
+					console.log('user change', dirtyUser, cleanUser, self.isClean());
 				}
 
 				self.user = ko.observable(new User({}));
 				self.origUser = ko.observable(user);
 
-				self.isDirty = ko.observable(-1);
+				self.isClean = ko.observable(-1);
 
 
 				self.addTeam = function(team) {
@@ -456,22 +233,9 @@
 
 				self.removeTeam = function(obj) {
 					//var index = self.favTeams.indexOf(obj);
-					self.data.favTeams.remove(obj);
+					self.user().favTeams.remove(obj);
 				};
 
-
-
-				/*self.dirtyItems = ko.computed(function() {
-				   	return ko.utils.arrayFilter(self.user(), function(item) {
-				   		console.log('dirty items', item, item.dirtyFlag.isDirty());
-				     	return item.dirtyFlag.isDirty();
-				   	});
-				});
-				self.isDirty = function() {
-					console.log('isdirty(_((((((((((((((((((((((((((', 
-						self.dirtyItems(), self.user());
-				 	return self.dirtyItems().length > 0;
-				};*/
 
 				self.initUser = function(userObj) {
 					var origValue = ko.toJS(userObj);
@@ -479,10 +243,11 @@
 
 					self.user(new User(origValue));
 					console.log('init user',userObj, self.user(), self.origUser());
-					ko.computed(function() {
+					
+					self.userData = ko.computed(function() {
 						return ko.toJSON(self.user);
 					}).subscribe(onDataChange);
-					self.isDirty(false);
+					self.isClean(true);
 				};
 
 				self.saveUser = function() {
@@ -500,8 +265,14 @@
 
 				self.resetUser = function() {
 					var origValue = ko.toJS(self.origUser);
+					console.log(origValue);
 					self.user().update(origValue);
-					self.isDirty(false);
+					//self.isClean(false);
+				}
+
+				self.echoUser = function() {
+
+
 				}
 
 			}
@@ -514,9 +285,9 @@
 
 				self.selectedUser = ko.observable();
 
-				self.mappings
-
 				self.userEditor = new EditUser();
+
+				self.log = ko.observableArray([]);
 
 
 
@@ -560,6 +331,7 @@
 							console.log(data);
 							var teams = data.team_all.queryResults.row;
 							var count = teams.length;
+							self.log.push({action: 'Loaded Team List', message: 'Count: ' + count});
 							teams.forEach(function(team) {
 								self.mlbTeams.push(new Team(team.team_id, team.name_display_long));
 								if(self.mlbTeams().length == count) 
@@ -570,6 +342,13 @@
 						}
 					});
 				};
+
+				self.saveUser = function() {
+					var user = self.userEditor.user;
+					self.log.push({action: 'Save User', message: syntaxHighlight(ko.toJSON(user))});
+					self.userEditor.initUser(user());
+					
+				}
 
 				self.loadUsers = function(userList) {
 
@@ -584,7 +363,10 @@
 					self.userEditor.initUser(self.users()[0]);
 				};
 
-				self.toggleUser 
+				self.toggleUser = function() {
+					console.log('toggleUser', arguments, this);
+					self.userEditor.initUser(this);
+				}
 			}
 
 			$(function() {
