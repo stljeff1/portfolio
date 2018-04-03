@@ -16,11 +16,11 @@ This repository contains snippets from past projects that illustrate my understa
 
 ## [JavaScript](https://github.com/stljeff1/portfolio/tree/master/Javascript)
 
+[YoutubeHelper](https://github.com/stljeff1/portfolio/tree/master/Javascript/YoutubeHelper) - Module that abstracts the details of loading the Youtube API, and fires a  jQuery event when it is loaded
 
 #### jQuery
 
 
-[YoutubeHelper](https://github.com/stljeff1/portfolio/tree/master/Javascript/YoutubeHelper) - Module that abstracts the details of loading the Youtube API, and fires a  jQuery event when it is loaded
 
 [Adwords](https://github.com/stljeff1/portfolio/tree/master/Javascript/adwords) - An example showing how to attch specific URL variables as form fields
 
