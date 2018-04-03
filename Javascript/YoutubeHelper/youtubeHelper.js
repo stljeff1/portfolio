@@ -28,6 +28,9 @@ function YoutubeHelper(onReady) {
 }; 
 
 function onYouTubeIframeAPIReady() {
-     $('body').addClass('youtube-ready');
-	$(window).trigger('youtubeReady');
+	var body = document.body;
+     var event = new CustomEvent('youtubeReady');
+
+     body.clasList += 'youtube-ready';
+     body.dispatchEvent(event);
 }
