@@ -4,6 +4,9 @@
 Each directory here contains code snippets that demonstrate my knowledge and command of Javascript.
 
 ### jQuery
+
+[YoutubeHelper](https://github.com/stljeff1/portfolio/tree/master/Javascript/YoutubeHelper) - Module that abstracts the details of loading the Youtube API, and fires a  jQuery event when it is loaded
+
 [Adwords](https://github.com/stljeff1/portfolio/tree/master/Javascript/adwords) - An example showing how to attch specific URL variables as form fields
 
 [Google Maps Demo](https://github.com/stljeff1/portfolio/tree/master/Javascript/google-maps-demo) - an exercise utilizing class objects and json data
