@@ -1,0 +1,53 @@
+.mfp-bg {
+	z-index: 5000;
+}
+.mfp-wrap.scrolling-image {
+	z-index: 5001;
+	.mfp-content {
+		max-width: 90%;
+		margin: 0 auto;
+		
+	}
+	.mfp-close {
+		position: relative;
+		right: 0;
+		height: auto;
+		line-height: 1;
+		font-size: 40px;
+	}
+	.mfp-figure {
+		display: flex;
+		flex-direction: column;
+		&:after {
+			background-color: transparent !important;
+		}
+	}
+	.scrolling-viewport {
+		max-height: 75vh;
+		overflow-y: scroll;
+		xmargin: 40px 0;
+		img {
+			padding: 0;
+		}
+	}
+	.mfp-bottom-bar {
+		position: relative;
+		background: #FFF;
+		padding: 15px;
+		display: flex;
+		margin-top: 0;
+		.mfp-title, .mfp-counter {
+			line-height: 1;
+			color: $navy;
+		}
+		.mfp-title {
+			padding-right: 15px;
+			flex: 1;
+		}
+		.mfp-counter {
+			font-size: 80%;
+			position: relative;
+			flex: 0;
+		}
+	}
+}

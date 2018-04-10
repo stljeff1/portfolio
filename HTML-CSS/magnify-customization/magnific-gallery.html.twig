@@ -1,0 +1,21 @@
+
+{% set details = page.header.details %}
+
+<div class="project-screenshots">
+
+	<div class="project-thumbnail-row row">
+		{% for screenshot in page.header.screenshots %}
+			{% set thumbnail = page.media[screenshot.thumbnail] %} 
+			{% set caption = screenshot.caption|markdown %}
+			{% set full = thumbnail %}
+			{% if screenshot.full %}
+				{% set full = page.media[screenshot.full] %}
+			{% endif %}
+			<div class="col-6 col-md-3">
+				<a href="{{ full.url}}" class="project-thumbnail" data-caption="{{ caption|escape('html_attr') }}">
+					<img src="{{ thumbnail.cropZoom(300,300).url }}" class="img-fluid" />
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+</div>
