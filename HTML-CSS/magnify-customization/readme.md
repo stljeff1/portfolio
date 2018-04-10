@@ -1,7 +1,7 @@
 
 ## Scrollable Images with Magnify
 
-This module leverages the [jQuery pluging Magnify]() to display galleries of long images. 
+This module leverages the [jQuery pluging Magnify](https://github.com/dimsemenov/Magnific-Popup) to display galleries of long images. 
 
 ### Original Problem
 
@@ -11,5 +11,8 @@ I really like the Magnify jQuery plugin because I can easly scroll through the i
 
 I wanted to find a way to vertically scroll these images from inside the Magnific Popup modal window.
 
-### Solution
+### Results
 
+[Look here for a working example of the solution](http://jeffwilkerson.net/projects/hmh-agency).
+
+[Read the blog post here](http://blog.jeffwilkerson.net/extending-magnific-popup-jquery-plugin-for-scrollable-images/).

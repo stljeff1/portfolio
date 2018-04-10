@@ -1,10 +1,9 @@
 
-{% set details = page.header.details %}
 
 <div class="project-screenshots">
 
 	<div class="project-thumbnail-row row">
-		{% for screenshot in page.header.screenshots %}
+		{% for screenshot in page.screenshots %}
 			{% set thumbnail = page.media[screenshot.thumbnail] %} 
 			{% set caption = screenshot.caption|markdown %}
 			{% set full = thumbnail %}

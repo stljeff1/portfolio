@@ -7,6 +7,8 @@ This repository contains snippets from past projects that illustrate my understa
 
 ## [HTML & CSS](https://github.com/stljeff1/portfolio/tree/master/Javascript)
 
+[Scrollable images with Magnific Popup jQuery Plugin](https://github.com/stljeff1/portfolio/tree/master/HTML-CSS/magnify-customization)
+
 [Mixitini Header](https://github.com/stljeff1/portfolio/tree/master/HTML-CSS/mixitini-header) - Crazy but cool layout
 
 [Sales Page](https://github.com/stljeff1/portfolio/tree/master/HTML-CSS/sales-page) - page displaying products and prices
