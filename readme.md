@@ -44,6 +44,8 @@ This repository contains snippets from past projects that illustrate my understa
 
 ## Wordpress (PHP/MySQL)
 
+[Custom Video block for Gutenberg](https://github.com/stljeff1/portfolio/tree/master/Wordpress/Gutenberg-Youtube-Block-Using-ACF) - Custom video block for Gutenberg editor so URL params (ie. `rel=0`) can be used.
+
 ## Other
 [Yoga App](https://github.com/stljeff1/Yoga-App) - Playing with AngularJS to create a single-page-app
 

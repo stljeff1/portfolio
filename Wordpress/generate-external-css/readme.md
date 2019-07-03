@@ -1,3 +1,4 @@
+**This was abandoned when I discovered I would need to mess with file permissions on the server. I never researched the best and easy way to do that.**
 
 Recently, I had the opportunity to build out a company's website using Wordpress. With any website, what is most interesting to me is how the company shows their employees / staff on their website. Do they take themselves seriously? Do they enjoy their work? How much do they promote individuality? Do they show any individuals? You can tell a lot from how a company presents their employees on their website.
 
