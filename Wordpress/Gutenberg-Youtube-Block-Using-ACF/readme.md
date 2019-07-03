@@ -10,4 +10,12 @@ The default video element does not allow URL parameters. In my specific case, I 
 
 Therefore, I came up with my own solution using ACF Pro. In this folder you will find the code I used to register my ACF block, the template used to render the block, and the json useds to create the custom field.
 
-Reference: [https://www.advancedcustomfields.com/resources/blocks/](https://www.advancedcustomfields.com/resources/blocks/)
+####Reference: 
+
+- [https://www.advancedcustomfields.com/resources/blocks/](https://www.advancedcustomfields.com/resources/blocks/)
+- [Dash Icons](http://calebserna.com/dashicons-cheatsheet/)
+- [Default block categories](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/)
+
+
+####TODO
+ - Disabled default video element [https://developer.wordpress.org/reference/hooks/allowed_block_types/](https://developer.wordpress.org/reference/hooks/allowed_block_types/)
